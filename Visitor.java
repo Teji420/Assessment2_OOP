@@ -1,36 +1,26 @@
-public class Visitor extends Person {
-    private String visitorID;
-    private String membershipLevel;
+public class Visitor {
+    private String firstName;
+    private String lastName;
+    private int id;
+    private int ticketNum;
+    private String visitDate;
 
-    public Visitor(String name, int age, String address, String visitorID, String membershipLevel) {
-        super(name, age, address);
-        this.membershipLevel = membershipLevel;
-        this.visitorID = visitorID;
+    public Visitor(String firstName, String lastName, int id, int ticketNum, String visitDate) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.id = id;
+        this.ticketNum = ticketNum;
+        this.visitDate = visitDate;
     }
-
-
-
-    // Getter and Setter methods
-
-    public String getMembershipLevel() {
-        return membershipLevel;
-    }
-
-    public String getVisitorID() {
-        return visitorID;
-    }
-
 
     @Override
-    //method overriding occurs when a subclass (child class) has the same method as the parent class.
-    // we will use this in upcming codes.
     public String toString() {
-        return "VISITOR = " +
-                "NAME=" + getName() + '\'' +
-                ", AGE=" + getAge() +
-                ",LOCATION=" + getAddress() + '\'' +
-                ", IDENTIFICATION=" + visitorID + '\'' +
-                ",MEMBERSHIP TYPE =" + membershipLevel + '\'' +
+        return "Visitor{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", id=" + id +
+                ", ticketNum=" + ticketNum +
+                ", visitDate='" + visitDate + '\'' +
                 '}';
     }
 }
