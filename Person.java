@@ -1,33 +1,39 @@
-
-public class Person {
-    // here are the instance variable for the person classs
-    private String firstName;
-    private String lastName;
+public abstract class Person {
+   // all of the code is the same just in the RIDE code ther  there are some changes
+    // according to the task requirement.
+    // fN first name
+    //lN last Name
+    private String fN;
+    private String lN;
     private int id;
 
+    // Default constructor
 
-    public Person(String firstName, String lastName, int id) {
-        // here i have declared the constructor in which the insttance variables have been passed.
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Person() {
+    }
+
+    // Constructor with parameters of int , fN, lN, and id.
+    public Person(String fN, String lN, int id) {
+        this.fN = fN;
+        this.lN = lN;
         this.id = id;
     }
 
-    // Getters and Setters for the first name, last name, and Identification.
-    public String getFirstName() {
-        return firstName;
+    // Getters and setters  of person class
+    public String getfN() {
+        return fN;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setf(String fN) {
+        this.fN = fN;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getlN() {
+        return lN;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setlN(String lN) {
+        this.lN = lN;
     }
 
     public int getId() {
