@@ -1,83 +1,126 @@
 import java.util.LinkedList;
+// Linked List is a part of the Collection framework present in java.util package.
+// ITS STRCUTURE IS IN THE LINEAR FORM AND THEY DO NOT STORE IN THE  CONTIGIOUS FORM OR LOCATION
+// THE EVERY ELEMENT HAS THE SEPERATE OBJECT  WITH DATA PART AND ADDRESS PART.
 import java.util.Queue;
-
+// THE QUEUE IS  THE OJECT WHICH HAS CAPABILITY TO PRESENT THE DATA STRUCTURE DESIGN THAT INSERT ELEMENTS
+// IN THE  END OF THE QUEUE AND REMOVE FROM THE BEGINNING.
+import java.util.Iterator;
+// The iterator() method can be used to get an Iterator for any collection:
 public class Ride implements RideInterface {
-
-    private int numOfCycles; // Track number of cycles run
-    private Queue<Visitor> queue;
+    private int numOfCycle;
+    private Employee rideOperator;
     private LinkedList<Visitor> rideHistory;
-    private Employee operator;
-    private String riderName;
-    private int maxRiders;
+    private String rideName;
+    private int maxRider;
+    private Queue<Visitor> visitorQueue;
+
+
     public Ride() {
-        this.riderName = "";
-        this.operator = null;
-        this.queue = new LinkedList<>();
+        this.rideName = "NO NAME RIDER IN THEME PARK";
+        this.maxRider = 6;
+        this.numOfCycle = 0;
+        this.visitorQueue = new LinkedList<>();
         this.rideHistory = new LinkedList<>();
-        this.maxRiders = 4;
-        this.numOfCycles = 0;
     }
 
-    public Ride(String riderName, Employee operator, int maxRiders) {
-        this.riderName = riderName;
-        this.operator = operator;
-        this.queue = new LinkedList<>();
+    public Ride(String rideName, int maxRider, Employee rideOperator) {
+        this.rideName = rideName;
+        this.rideOperator = rideOperator;
+        this.visitorQueue = new LinkedList<>();
         this.rideHistory = new LinkedList<>();
-        this.numOfCycles = 0;
-        this.maxRiders = maxRiders;
+        this.maxRider = maxRider;
+        this.numOfCycle = 0;
 
     }
 
     @Override
-    public void addVisitorToQueue(Visitor visitor) {
-        queue.add(visitor);
-        System.out.println("GUEST = " + visitor.getfN() + "  THEY HAVE ADDED IN LINE.");
+    public void AddVisitorToQueue(Visitor visitor) {
+        visitorQueue.add(visitor);
+        System.out.println(visitor.getName() + " nMAES GONNA DISPLAY ONCE ALL WILL ADDED .");
     }
 
     @Override
-    public void removeVisitorFromQueue(Visitor visitor) {
-        if (queue.remove(visitor)) {
-            System.out.println("VISITOR " + visitor.getfN() + " REMOVED FROM LINE/QUEUE.");
+    public void RemoveVisitorFromQueue(Visitor visitor) {
+        if (visitorQueue.remove(visitor)) {
+            System.out.println(visitor.getName() + "  THIS ONE IS REMOVED FROM THE QUEUE.");
         } else {
-            System.out.println("VISITOR = " + visitor.getfN() + "  VISITOR IS NOT FOUND / AVAILABLE IN THE QUEUE.");
+            System.out.println(visitor.getName() + " HE/ SHE IS NOT IN THE QUEUE");
         }
     }
 
     @Override
-    public void printQueue() {
-        System.out.println("QUEUE = ");
-        for (Visitor v : queue) {
-            System.out.println(v.getfN() + " " + v.getlN() + ", IDENTIFICATION =  " + v.getId());
+    public void PrintQueue() {
+        System.out.println("VISITOR IN THE LIST/ QUEUE:");
+        for (Visitor visitor : visitorQueue) {
+            System.out.println(visitor);
         }
     }
 
     @Override
-    public void printRideHistory() {
-        System.out.println(" HISTORY =");
-        for (Visitor v : rideHistory) {
-            System.out.println(v.getfN() + " " + v.getlN() + ", IDENTIFICATION  " + v.getId());
-        }
-    }
-
-    public void runOneCycle() {
-        if (operator == null) {
-            System.out.println("No ride operator assigned. The ride cannot be run.");
+    public void RunOneCycle() {
+        if (rideOperator == null) {
+            System.out.println(" IF THE RIDER IS NOT THE OPERATOR THEN THEY DO NOT HAVE THE ACCESS.");
             return;
         }
-
-        if (queue.isEmpty()) {
-            System.out.println(" NOTHING IS FOUND EMPTY ONE ");
+        if (visitorQueue.isEmpty()) {
+            System.out.println(" VISITOR   YOU CAN NOT RIDE HERE SORRY .");
             return;
         }
-
-        int riders = 0;
-        while (riders < maxRiders && !queue.isEmpty()) {
-            Visitor visitor = queue.poll();
+        int count = 0;
+        while (!visitorQueue.isEmpty() && count < maxRider) {
+            Visitor visitor = visitorQueue.poll();
             rideHistory.add(visitor);
-            riders++;
+            count++;
         }
-
-        numOfCycles++;
-        System.out.println("COUNT OF THE NUMBER OF THE CYCLE = " + numOfCycles);
+        numOfCycle++;
+        System.out.println(" THE COUNT OF THE RIDE : " + numOfCycle);
     }
+
+    @Override
+    public void PrintRideHistory() {
+        System.out.println(" VISITOR COUNT THOSE WHO GOT THE RIDE :");
+        Iterator<Visitor> iterator = rideHistory.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+    }
+
+    public void sortVisitorsByNameAndAge() {
+        rideHistory.sort((v1, v2) -> {
+            int nameComparison = v1.getName().compareTo(v2.getName());
+            if (nameComparison == 0) {
+                return Integer.compare(v1.getAge(), v2.getAge());
+            } else {
+                return nameComparison;
+            }
+        });
+    }
+
+    // Getter and Setter methods
+    public Queue<Visitor> getVisitorQueue() {
+        return visitorQueue;
+    }
+
+    public LinkedList<Visitor> getRideHistory() {
+        return rideHistory;
+    }
+    public int getMaxRider() {
+        return maxRider;
+    }
+
+    public int getNumOfCycle() {
+        return numOfCycle;
+    }
+    public String getRideName() {
+        return rideName;
+    }
+
+
+
+    public Employee getRideOperator() {
+        return rideOperator;
+    }
+
+
 }

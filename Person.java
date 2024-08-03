@@ -1,46 +1,34 @@
 public abstract class Person {
-   // all of the code is the same just in the RIDE code ther  there are some changes
-    // according to the task requirement.
-    // fN first name
-    //lN last Name
-    private String fN;
-    private String lN;
-    private int id;
+    // abstract  class gives the opportunity to the coder to create the functionally that subclass
+    // implement or override.
+    private int age;
+    private String address;
+    private String name;
 
-    // Default constructor
-
-    public Person() {
+  //The Person class is made abstract because it is intended to serve as a base class
+  // for other specific types of people  in my further classs such as the
+  // Employee and Visitor.
+    // constrcutor in which i have passsed my values in the  parameter according to the
+    // task requirement.
+    public Person(String name, int age, String address) {
+        this.name = name;
+        this.address = address;
+        this.age = age;
     }
 
-    // Constructor with parameters of int , fN, lN, and id.
-    public Person(String fN, String lN, int id) {
-        this.fN = fN;
-        this.lN = lN;
-        this.id = id;
+    // Getter and Setter methods usage in the person classs
+
+    public int getAge() {
+        return age;
     }
 
-    // Getters and setters  of person class
-    public String getfN() {
-        return fN;
+    public String getAddress() {
+        return address;
     }
 
-    public void setf(String fN) {
-        this.fN = fN;
+    public String getName() {
+        return name;
     }
 
-    public String getlN() {
-        return lN;
-    }
 
-    public void setlN(String lN) {
-        this.lN = lN;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 }
