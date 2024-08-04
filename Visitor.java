@@ -1,18 +1,20 @@
 public class Visitor extends Person {
     private int ticketNum;
     private String visitDate;
+    // all of the code is same as it is used in the previous class
+    // Default   constructor without passing anything in parameter.
+    public Visitor() {
 
-    // Default constructor
-    public Visitor() {}
+    }
 
-    // Parameterized constructor
+    // Parameterized constructor in which i have declared the  instance variables
     public Visitor(String firstName, String lastName, int id, int ticketNum, String visitDate) {
         super(firstName, lastName, id);
         this.ticketNum = ticketNum;
         this.visitDate = visitDate;
     }
 
-    // Getters and setters
+    // Getters and setters same as previous class
     public int getTicketNum() {
         return ticketNum;
     }
@@ -30,8 +32,9 @@ public class Visitor extends Person {
     }
 
     @Override
-    public String toString() {
-        return String.format("Visitor [First Name: %s, Last Name: %s, ID: %d, Ticket Number: %d, Visit Date: %s]",
-                getFirstName(), getLastName(), getId(), ticketNum, visitDate);
+    public void printDetails() {
+        super.printDetails();
+        System.out.println("  TICKET NUMBER =  " + ticketNum);
+        System.out.println("  VISIT DATE =  " + visitDate);
     }
 }

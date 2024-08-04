@@ -1,24 +1,20 @@
 public class AssignmentTwo {
     public static void main(String[] args) {
         AssignmentTwo assignment = new AssignmentTwo();
-        assignment.partFourA();
+        assignment.partEight();
     }
 
-    public void partFourA() {
+    public void partEight() {
         // Create a new Ride object
-        Ride ride = new Ride("Ferris Wheel", "Family", 20, new Employee("John", "Doe", 35, "E123", "Operator"));
+        Employee operator = new Employee("John", "Doe", 1, "Operator", 3000);
+        Ride rollerCoaster = new Ride("Roller Coaster", 5, operator);
 
-        // Add visitors
-        ride.addVisitor(new Visitor("Alice", "Smith", 25, 1001, "15th Sep"));
-        ride.addVisitor(new Visitor("Bob", "Brown", 22, 1002, "12th Sep"));
-        ride.addVisitor(new Visitor("Charlie", "Johnson", 28, 1003, "10th Sep"));
-        ride.addVisitor(new Visitor("David", "Wilson", 30, 1004, "20th Sep"));
-        ride.addVisitor(new Visitor("Eve", "Davis", 24, 1005, "18th Sep"));
+        // Create and add visitors to the ride using addVisitorToRide
+        rollerCoaster.addVisitorToRide(new Visitor("HARSH", "JATT", 1, 11, "21th DECEMBER"));
+        rollerCoaster.addVisitorToRide(new Visitor("SEEMA", "SAINI", 2, 22, "20th Jan"));
+        rollerCoaster.addVisitorToRide(new Visitor("REMMA", "AJIMAL", 3, 23, "12th Nov"));
+        rollerCoaster.addVisitorToRide(new Visitor("SINGH", "KAHOLN", 4, 44, "31st SEPTEMBER"));
+        rollerCoaster.addVisitorToRide(new Visitor("SIMRAN", "DHILLION", 5, 1010, "9-Aug"));
 
-        // Print number of visitors in the collection
-        System.out.println("Number of visitors in ride history: " + ride.getNumberOfVisitors());
-
-        // Print all visitors in the collection
-        ride.printRideHistory();
     }
 }

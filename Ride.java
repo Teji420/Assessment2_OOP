@@ -1,42 +1,53 @@
+//ExecutorService pool = Executors.newFixedThreadPool(3);
+//        pool.execute(new TestThread("thread 1"));
+//        pool.execute(new TestThread("thread 2"));
+//        pool.execute(new TestThread("thread 3"));
+//        pool.execute(new TestThread("thread 4"));
+//        pool.execute(new TestThread("thread 5"));
+//        pool.execute(new TestThread("thread 6"));
+//        pool.execute(new TestThread("thread 7"));
+//        pool.execute(new TestThread("thread 8"));
+//        pool.shutdown();
+//    }public static void fixedThreadPool() {
+
+//import java.util.LinkedList;
+//
+//import java.util.concurrent.locks.Lock;
+//import java.util.concurrent.locks.ReentrantLock;
+
+//import java.io.IOException;
+
 import java.util.LinkedList;
-import java.util.Iterator;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Ride {
-    private String rideName;
-    private String rideType;
+    private String name;
     private int capacity;
     private Employee operator;
-    private LinkedList<Visitor> visitors;  // Collection of visitors who have taken the ride
+    private LinkedList<Visitor> visitors;
+    private final ReentrantLock lock = new ReentrantLock();
 
-    // Default constructor
+    // to have the concurrent lock there is the need of the reentrantlock.
     public Ride() {
+        this.name = "";
+        this.capacity = 0;
+        this.operator = null;
         this.visitors = new LinkedList<>();
     }
 
-    // Parameterized constructor
-    public Ride(String rideName, String rideType, int capacity, Employee operator) {
-        this.rideName = rideName;
-        this.rideType = rideType;
+    public Ride(String name, int capacity, Employee operator) {
+        this.name = name;
         this.capacity = capacity;
         this.operator = operator;
         this.visitors = new LinkedList<>();
     }
 
-    // Getters and setters
-    public String getRideName() {
-        return rideName;
+    public String getName() {
+        return name;
     }
 
-    public void setRideName(String rideName) {
-        this.rideName = rideName;
-    }
-
-    public String getRideType() {
-        return rideType;
-    }
-
-    public void setRideType(String rideType) {
-        this.rideType = rideType;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getCapacity() {
@@ -55,29 +66,20 @@ public class Ride {
         this.operator = operator;
     }
 
-    // Method to add a visitor to the collection
-    public void addVisitor(Visitor visitor) {
-        this.visitors.add(visitor);
-        System.out.println("Visitor added: " + visitor);
-    }
-
-    // Method to get the number of visitors in the collection
-    public int getNumberOfVisitors() {
-        return this.visitors.size();
-    }
-
-    // Method to print all visitors using Iterator
-    public void printRideHistory() {
-        System.out.println("Ride History:");
-        Iterator<Visitor> iterator = visitors.iterator();
-        while (iterator.hasNext()) {
-            System.out.println(iterator.next());
+    public void addVisitorToRide(Visitor visitor) {
+        lock.lock();  // adding lock before execution
+        try {
+            if (visitors.size() < capacity) {
+                visitors.add(visitor);
+                System.out.println(" VISITOR = " + visitor.getFirstName() + "  THEY HAVE BEEN ADDED IN QUEUE ");
+            } else {
+                System.out.println(" SORRY BABY NO RIDE LEFT KNOW BYE " + visitor.getFirstName() + ".");
+            }
+        } catch (Exception e) {
+            System.out.println("OOPS ERROR WE HAVE   " + e.getMessage());
+        } finally {
+            lock.unlock();  // Releasing the lock when it will executed.
         }
     }
-
-    @Override
-    public String toString()
-    {
-        return String.format("Ride [Name: %s, Type: %s, Capacity: %d, Operator: %s]", rideName, rideType, capacity, operator);
-    }
 }
+
