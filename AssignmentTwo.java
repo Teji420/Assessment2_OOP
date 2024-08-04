@@ -1,18 +1,24 @@
 public class AssignmentTwo {
     public static void main(String[] args) {
-
-         partSeven();
+        AssignmentTwo assignment = new AssignmentTwo();
+        assignment.partFourA();
     }
 
-    public static void partSeven() {
-        // THE RIDE INSTANCE
-        Ride rollerCoaster = new Ride();
+    public void partFourA() {
+        // Create a new Ride object
+        Ride ride = new Ride("Ferris Wheel", "Family", 20, new Employee("John", "Doe", 35, "E123", "Operator"));
 
-      // HERE IS THE IMPORTANT OR CRUCIAL STEP WHILE  GETTING THE DATA FROM THE CSV FILE WE HAVE CREATED THE PART7.CSV.
-        rollerCoaster.importVisitorsFromCSV("PART7.CSV");
-        // IN THE LINKED LIST JUST TO MAKE SURE THE NUMBER OF PEOPLE IN VISITOR LIST ARE CORRECT OR NOT.
-        System.out.println("COUNT OF THE VISITOR WE HAVE IS =  " + rollerCoaster.getRideHistory().size());
-        // CONFIRMATION OF THE PRINTING THE ALL DETAILS OF THE VISITORS WHILE DOING STORING IN THE LINKED LIST.
-        rollerCoaster.printRideHistory();
+        // Add visitors
+        ride.addVisitor(new Visitor("Alice", "Smith", 25, 1001, "15th Sep"));
+        ride.addVisitor(new Visitor("Bob", "Brown", 22, 1002, "12th Sep"));
+        ride.addVisitor(new Visitor("Charlie", "Johnson", 28, 1003, "10th Sep"));
+        ride.addVisitor(new Visitor("David", "Wilson", 30, 1004, "20th Sep"));
+        ride.addVisitor(new Visitor("Eve", "Davis", 24, 1005, "18th Sep"));
+
+        // Print number of visitors in the collection
+        System.out.println("Number of visitors in ride history: " + ride.getNumberOfVisitors());
+
+        // Print all visitors in the collection
+        ride.printRideHistory();
     }
 }

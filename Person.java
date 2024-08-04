@@ -1,34 +1,47 @@
-public abstract class Person {
-    // abstract  class gives the opportunity to the coder to create the functionally that subclass
-    // implement or override.
-    private int age;
-    private String address;
-    private String name;
+public class Person {
 
-  //The Person class is made abstract because it is intended to serve as a base class
-  // for other specific types of people  in my further classs such as the
-  // Employee and Visitor.
-    // constrcutor in which i have passsed my values in the  parameter according to the
-    // task requirement.
-    public Person(String name, int age, String address) {
-        this.name = name;
-        this.address = address;
-        this.age = age;
+   // same as from the part 1 class person content is taken in this part4.
+    private String firstName;
+    private String lastName;
+    private int id;
+
+    // Default constructor of the class person
+    public Person() {}
+
+    // Parameterized constructor with different data type in the following content.
+    public Person(String firstName, String lastName, int id) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.id = id;
+    }
+    
+    // Getters and setters
+    public String getFirstName() {
+        return firstName;
     }
 
-    // Getter and Setter methods usage in the person classs
-
-    public int getAge() {
-        return age;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getAddress() {
-        return address;
+    public String getLastName() {
+        return lastName;
     }
 
-    public String getName() {
-        return name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Person [First Name: %s, Last Name: %s, ID: %d]", firstName, lastName, id);
+    }
 }

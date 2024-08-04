@@ -1,23 +1,37 @@
 public class Employee extends Person {
+    private String employeeId;
     private String position;
-    private String employeeID;
 
+    // Default constructor
+    public Employee() {}
 
-    public Employee(String name, int age, String address, String employeeID, String position) {
-        super(name, age, address);
-        this.employeeID = employeeID;
+    // Parameterized constructor
+    public Employee(String firstName, String lastName, int id, String employeeId, String position) {
+        super(firstName, lastName, id);
+        this.employeeId = employeeId;
         this.position = position;
     }
 
-    // Getter and Setter methods
-    // GETTERS REFER TO ACCESS THE PRIVATE ATTRIBUTES OF THE CLASS MEANWHHILE, THE SETTERS ARE THE
-    // ONE WHO HELPS TO SET THE VALUES TO PRIATE ATTRIBUTES IN THE CLASS.
+    // Getters and setters
+    public String getEmployeeId() {
+        return employeeId;
+    }
 
-    public String getEmployeeID() {
-        return employeeID;
+    public void setEmployeeId(String employeeId) {
+        this.employeeId = employeeId;
     }
 
     public String getPosition() {
         return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Employee [First Name: %s, Last Name: %s, ID: %d, Employee ID: %s, Position: %s]",
+                getFirstName(), getLastName(), getId(), employeeId, position);
     }
 }
